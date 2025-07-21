@@ -4,6 +4,8 @@ import { FaRegUser, FaLock, FaEye, FaEyeSlash, FaArrowLeft } from "react-icons/f
 import { motion } from "framer-motion";
 import illustration from "../assets/login-image.png"; // replace name later
 
+const BACKEND_URL = "https://resume-backend-5hsx.onrender.com";
+
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +17,7 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/user/login", {
+      const res = await fetch(`${BACKEND_URL}/api/user/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

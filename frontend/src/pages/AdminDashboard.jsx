@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
+const BACKEND_URL = "https://resume-backend-5hsx.onrender.com";
+
 export default function AdminDashboard() {
   const [jobCount, setJobCount] = useState(0);
   const [candidateList, setCandidateList] = useState([]);
@@ -23,31 +25,31 @@ export default function AdminDashboard() {
   }, []);
 
   const fetchJobs = async () => {
-    const res = await fetch("http://localhost:5000/api/jobs/getJobCount");
+    const res = await fetch(`${BACKEND_URL}/api/jobs/getJobCount`);
     const data = await res.json();
     if (res.ok && data.count !== undefined) setJobCount(data.count);
   };
 
   const fetchAllJobs = async () => {
-    const res = await fetch("http://localhost:5000/api/jobs/getAllJobs");
+    const res = await fetch(`${BACKEND_URL}/api/jobs/getAllJobs`);
     const data = await res.json();
     if (data.success) setJobList(data.jobs || []);
   };
 
   const fetchCandidates = async () => {
-    const res = await fetch("http://localhost:5000/api/candidates/getAllCandidates");
+    const res = await fetch(`${BACKEND_URL}/api/candidates/getAllCandidates`);
     const data = await res.json();
     if (data.success) setCandidateList(data.data || []);
   };
 
   const fetchUsers = async () => {
-    const res = await fetch("http://localhost:5000/api/user/getUserCount");
+    const res = await fetch(`${BACKEND_URL}/api/user/getUserCount`);
     const data = await res.json();
     if (res.ok && data.count !== undefined) setUserCount(data.count);
   };
 
   const fetchUsersList = async () => {
-    const res = await fetch("http://localhost:5000/api/user/getAllUsers");
+    const res = await fetch(`${BACKEND_URL}/api/user/getAllUsers`);
     const data = await res.json();
     if (data.success) setUserList(data.users || []);
   };
@@ -59,7 +61,7 @@ export default function AdminDashboard() {
 
   const handleAddJob = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:5000/api/jobs/create", {
+    const res = await fetch(`${BACKEND_URL}/api/jobs/create`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -79,7 +81,7 @@ export default function AdminDashboard() {
 
   const handleDeleteJob = async (id) => {
     if (window.confirm("Are you sure you want to delete this job role?")) {
-      const res = await fetch(`http://localhost:5000/api/jobs/delete/${id}`, { method: "DELETE" });
+      const res = await fetch(`${BACKEND_URL}/api/jobs/delete/${id}`, { method: "DELETE" });
       const data = await res.json();
       if (data.success) {
         fetchAllJobs();
@@ -90,7 +92,7 @@ export default function AdminDashboard() {
 
   const handleDeleteUser = async (id) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
-      const res = await fetch(`http://localhost:5000/api/user/deleteUser/${id}`, { method: "DELETE" });
+      const res = await fetch(`${BACKEND_URL}/api/user/deleteUser/${id}`, { method: "DELETE" });
       const data = await res.json();
       if (data.success) {
         fetchUsers();

@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import illustration from "../assets/login-image.png";
 
+const BACKEND_URL = "https://resume-backend-5hsx.onrender.com";
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0 },
@@ -29,7 +31,7 @@ export default function SignupPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/user/createUser", {
+      const res = await fetch(`${BACKEND_URL}/api/user/createUser`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, phone, password }),
@@ -41,6 +43,7 @@ export default function SignupPage() {
         setEmail("");
         setPhone("");
         setPassword("");
+        localStorage.setItem("USER", JSON.stringify(data.user));
         navigate("/dashboard");
       } else {
         alert(data.msg || "Signup failed");

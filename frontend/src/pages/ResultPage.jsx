@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
+const BACKEND_URL = "https://resume-backend-5hsx.onrender.com";
+
 export default function ResultPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ export default function ResultPage() {
     const fetchResult = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/candidates/getCandidateById/${id}`
+          `${BACKEND_URL}/api/candidates/getCandidateById/${id}`
         );
         const result = await res.json();
 

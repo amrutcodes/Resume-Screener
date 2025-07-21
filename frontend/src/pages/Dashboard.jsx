@@ -19,6 +19,8 @@ import {
 } from "recharts";
 import { motion } from "framer-motion";
 
+const BACKEND_URL = "https://resume-backend-5hsx.onrender.com";
+
 const pieData = [
   { name: "Saved Time", value: 50 },
   { name: "Reduced Bias", value: 25 },
@@ -61,7 +63,7 @@ export default function Dashboard() {
 
   const fetchJobs = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/jobs/getAllJobs");
+      const res = await fetch(`${BACKEND_URL}/api/jobs/getAllJobs`);
       const data = await res.json();
       if (data.success) setJobs(data.jobs);
     } catch (error) {
@@ -87,7 +89,7 @@ export default function Dashboard() {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/candidates/upload/${selectedJobId}`,
+        `${BACKEND_URL}/api/candidates/upload/${selectedJobId}`,
         {
           method: "POST",
           body: formData,
