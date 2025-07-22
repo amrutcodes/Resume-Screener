@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-
-const BACKEND_URL = "https://resume-backend-5hsx.onrender.com";
+import { BACKEND_URL } from "../api";
 
 export default function ResultPage() {
   const { id } = useParams();

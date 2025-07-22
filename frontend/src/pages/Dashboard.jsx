@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../api";
 import {
   PieChart,
   Pie,
@@ -19,7 +20,6 @@ import {
 } from "recharts";
 import { motion } from "framer-motion";
 
-const BACKEND_URL = "https://resume-backend-5hsx.onrender.com";
 
 const pieData = [
   { name: "Saved Time", value: 50 },

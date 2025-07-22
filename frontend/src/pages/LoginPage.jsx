@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaRegUser, FaLock, FaEye, FaEyeSlash, FaArrowLeft } from "react-icons/fa";
 import { motion } from "framer-motion";
 import illustration from "../assets/login-image.png"; // replace name later
-
-const BACKEND_URL = "https://resume-backend-5hsx.onrender.com";
+import { BACKEND_URL } from "../api"; 
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");

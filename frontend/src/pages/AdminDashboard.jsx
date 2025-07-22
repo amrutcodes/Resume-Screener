@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-
-const BACKEND_URL = "https://resume-backend-5hsx.onrender.com";
+import { BACKEND_URL } from "../api";
 
 export default function AdminDashboard() {
   const [jobCount, setJobCount] = useState(0);

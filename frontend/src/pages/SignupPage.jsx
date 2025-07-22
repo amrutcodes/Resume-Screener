@@ -10,8 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import illustration from "../assets/login-image.png";
-
-const BACKEND_URL = "https://resume-backend-5hsx.onrender.com";
+import { BACKEND_URL } from "../api";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
